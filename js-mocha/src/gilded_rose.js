@@ -6,6 +6,15 @@ class Item {
   }
 }
 
+const validateQuality = (quality) => {
+  if (quality > 50) {
+    return 50;
+  } else if (quality < 0) {
+    return 0;
+  }
+  return quality;
+};
+
 const ITEM_SPECS = {
   "Sulfuras, Hand of Ragnaros": {
     updateQuality: (sellIn, quality) => {
@@ -23,9 +32,7 @@ const ITEM_SPECS = {
         quality++;
       }
 
-      if (quality > 50) {
-        quality = 50;
-      }
+      quality = validateQuality(quality);
 
       return [sellIn, quality];
     },
@@ -33,7 +40,7 @@ const ITEM_SPECS = {
 
   "Backstage passes to a TAFKAL80ETC concert": {
     updateQuality: (sellIn, quality) => {
-      quality = quality + 1;
+      quality++;
 
       if (sellIn < 11) {
         quality = quality + 1;
@@ -44,15 +51,16 @@ const ITEM_SPECS = {
 
       sellIn--;
 
-      if (quality > 50) {
-        quality = 50;
-      } else if (sellIn < 0) {
+      if (sellIn < 0) {
         quality = 0;
       }
+
+      quality = validateQuality(quality);
 
       return [sellIn, quality];
     },
   },
+
   generic_spec: {
     updateQuality: (sellIn, quality) => {
       quality--;
@@ -62,11 +70,7 @@ const ITEM_SPECS = {
         quality--;
       }
 
-      if (quality > 50) {
-        quality = 50;
-      } else if (quality < 0) {
-        quality = 0;
-      }
+      quality = validateQuality(quality);
 
       return [sellIn, quality];
     },
