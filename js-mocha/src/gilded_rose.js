@@ -64,8 +64,9 @@ class Shop {
       const item = this.items[i];
 
       const spec = ITEM_SPECS[item.name];
+      let { sellIn, quality } = item;
+
       if (spec) {
-        const { sellIn, quality } = item;
         const [updatedSellIn, updatedQuality] = spec.updateQuality(
           sellIn,
           quality
@@ -76,19 +77,21 @@ class Shop {
         continue;
       }
 
-      item.quality = item.quality - 1;
+      quality--;
+      sellIn--;
 
-      item.sellIn = item.sellIn - 1;
-
-      if (item.sellIn < 0) {
-        item.quality = item.quality - 1;
+      if (sellIn < 0) {
+        quality--;
       }
 
-      if (item.quality > 50) {
-        item.quality = 50;
-      } else if (item.quality < 0) {
-        item.quality = 0;
+      if (quality > 50) {
+        quality = 50;
+      } else if (quality < 0) {
+        quality = 0;
       }
+
+      item.sellIn = sellIn;
+      item.quality = quality;
     }
 
     return this.items;
