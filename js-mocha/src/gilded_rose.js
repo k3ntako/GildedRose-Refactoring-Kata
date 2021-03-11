@@ -12,6 +12,26 @@ const ITEM_SPECS = {
       return [sellIn, quality];
     },
   },
+
+  "Aged Brie": {
+    updateQuality: (sellIn, quality) => {
+      sellIn--;
+
+      quality++;
+
+      sellIn--;
+
+      if (sellIn < 0) {
+        quality++;
+      }
+
+      if (quality > 50) {
+        quality = 50;
+      }
+
+      return [sellIn, quality];
+    },
+  },
 };
 
 class Shop {
@@ -35,9 +55,7 @@ class Shop {
         continue;
       }
 
-      if (item.name === "Aged Brie") {
-        item.quality = item.quality + 1;
-      } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+      if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
         item.quality = item.quality + 1;
 
         if (item.sellIn < 11) {
@@ -53,9 +71,7 @@ class Shop {
       item.sellIn = item.sellIn - 1;
 
       if (item.sellIn < 0) {
-        if (item.name === "Aged Brie") {
-          item.quality = item.quality + 1;
-        } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+        if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
           item.quality = 0;
         } else {
           item.quality = item.quality - 1;
