@@ -17,15 +17,15 @@ const validateQuality = (quality) => {
 
 const ITEM_SPECS = {
   "Sulfuras, Hand of Ragnaros": {
-    updateQuality: (sellIn, quality) => {
-      return [sellIn, 80];
+    updateQuality: (item) => {
+      return [item.sellIn, 80];
     },
   },
 
   "Aged Brie": {
-    updateQuality: (sellIn, quality) => {
+    updateQuality: (item) => {
+      let { quality, sellIn } = item;
       quality++;
-
       sellIn--;
 
       if (sellIn < 0) {
@@ -39,7 +39,8 @@ const ITEM_SPECS = {
   },
 
   "Backstage passes to a TAFKAL80ETC concert": {
-    updateQuality: (sellIn, quality) => {
+    updateQuality: (item) => {
+      let { quality, sellIn } = item;
       quality++;
 
       if (sellIn < 11) {
@@ -62,7 +63,8 @@ const ITEM_SPECS = {
   },
 
   generic_spec: {
-    updateQuality: (sellIn, quality) => {
+    updateQuality: (item) => {
+      let { quality, sellIn } = item;
       quality--;
       sellIn--;
 
@@ -86,13 +88,12 @@ class Shop {
       const item = this.items[i];
 
       let spec = ITEM_SPECS[item.name];
-      let { sellIn, quality } = item;
 
       if (!spec) {
         spec = ITEM_SPECS.generic_spec;
       }
 
-      [sellIn, quality] = spec.updateQuality(sellIn, quality);
+      const [sellIn, quality] = spec.updateQuality(item);
 
       item.sellIn = sellIn;
       item.quality = quality;
