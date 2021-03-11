@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Gilded Rose kata in Javascript with Mocha",
   "scripts": {
-    "test": "mocha --compilers js:babel/register"
+    "test": "mocha --compilers js:babel/register --watch "
   },
   "repository": {
     "type": "git",
