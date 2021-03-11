@@ -53,6 +53,24 @@ const ITEM_SPECS = {
       return [sellIn, quality];
     },
   },
+  generic_spec: {
+    updateQuality: (sellIn, quality) => {
+      quality--;
+      sellIn--;
+
+      if (sellIn < 0) {
+        quality--;
+      }
+
+      if (quality > 50) {
+        quality = 50;
+      } else if (quality < 0) {
+        quality = 0;
+      }
+
+      return [sellIn, quality];
+    },
+  },
 };
 
 class Shop {
@@ -63,25 +81,14 @@ class Shop {
     for (var i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
-      const spec = ITEM_SPECS[item.name];
+      let spec = ITEM_SPECS[item.name];
       let { sellIn, quality } = item;
 
-      if (spec) {
-        [sellIn, quality] = spec.updateQuality(sellIn, quality);
-      } else {
-        quality--;
-        sellIn--;
-
-        if (sellIn < 0) {
-          quality--;
-        }
-
-        if (quality > 50) {
-          quality = 50;
-        } else if (quality < 0) {
-          quality = 0;
-        }
+      if (!spec) {
+        spec = ITEM_SPECS.generic_spec;
       }
+
+      [sellIn, quality] = spec.updateQuality(sellIn, quality);
 
       item.sellIn = sellIn;
       item.quality = quality;
