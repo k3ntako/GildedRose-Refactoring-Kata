@@ -6,6 +6,13 @@ class Item {
   }
 }
 
+class ConjuredItem extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+    this.isConjured = true;
+  }
+}
+
 const validateQuality = (quality) => {
   if (quality > 50) {
     return 50;
@@ -64,15 +71,19 @@ const ITEM_SPECS = {
 
   generic_spec: {
     updateQuality: (item) => {
-      let { quality, sellIn } = item;
-      quality--;
+      let { quality, sellIn, isConjured } = item;
+      let qualityDecrease = 1;
       sellIn--;
 
       if (sellIn < 0) {
-        quality--;
+        qualityDecrease++;
       }
 
-      quality = validateQuality(quality);
+      if (isConjured) {
+        qualityDecrease *= 2;
+      }
+
+      quality = validateQuality(quality - qualityDecrease);
 
       return [sellIn, quality];
     },
@@ -104,5 +115,6 @@ class Shop {
 }
 module.exports = {
   Item,
+  ConjuredItem,
   Shop,
 };

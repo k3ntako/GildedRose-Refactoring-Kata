@@ -1,5 +1,6 @@
 var { expect } = require("chai");
-var { Shop, Item } = require("../src/gilded_rose.js");
+var { Shop, Item, ConjuredItem } = require("../src/gilded_rose.js");
+
 describe("Gilded Rose", function () {
   describe("updateQuality", function () {
     it("should return foo", function () {
@@ -112,5 +113,11 @@ describe("Gilded Rose", function () {
     ]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(50);
+  });
+
+  it("should drop conjured item's quality twice as fast", function () {
+    const gildedRose = new Shop([new ConjuredItem("foo", 1, 30)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(28);
   });
 });
