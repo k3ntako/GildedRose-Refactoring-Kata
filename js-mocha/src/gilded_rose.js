@@ -6,6 +6,14 @@ class Item {
   }
 }
 
+const ITEM_SPECS = {
+  "Sulfuras, Hand of Ragnaros": {
+    updateQuality: (sellIn, quality) => {
+      return [sellIn, quality];
+    },
+  },
+};
+
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -14,7 +22,16 @@ class Shop {
     for (var i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
-      if (item.name === "Sulfuras, Hand of Ragnaros") {
+      const spec = ITEM_SPECS[item.name];
+      if (spec) {
+        const { sellIn, quality } = item;
+        const [updatedSellIn, updatedQuality] = spec.updateQuality(
+          sellIn,
+          quality
+        );
+
+        item.sellIn = updatedSellIn;
+        item.quality = updatedQuality;
         continue;
       }
 
