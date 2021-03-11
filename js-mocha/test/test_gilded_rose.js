@@ -13,5 +13,11 @@ describe("Gilded Rose", function () {
       const items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(1);
     });
+
+    it("should reduce quality by 1", function () {
+      const gildedRose = new Shop([new Item("foo", 2, 3)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(2);
+    });
   });
 });
