@@ -9,7 +9,7 @@ class Item {
 const ITEM_SPECS = {
   "Sulfuras, Hand of Ragnaros": {
     updateQuality: (sellIn, quality) => {
-      return [sellIn, quality];
+      return [sellIn, 80];
     },
   },
 

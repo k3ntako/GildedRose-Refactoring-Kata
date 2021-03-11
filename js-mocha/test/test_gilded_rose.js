@@ -51,7 +51,7 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).to.equal(50);
   });
 
-  it("should change sell-in date of Sulfuras, Hand of Ragnaros", function () {
+  it("should not change sell-in date of Sulfuras, Hand of Ragnaros", function () {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", 10, 20),
     ]);
@@ -59,12 +59,12 @@ describe("Gilded Rose", function () {
     expect(items[0].sellIn).to.equal(10);
   });
 
-  it("should change quality of Sulfuras, Hand of Ragnaros", function () {
+  it("should not change quality of Sulfuras, Hand of Ragnaros", function () {
     const gildedRose = new Shop([
-      new Item("Sulfuras, Hand of Ragnaros", 10, 20),
+      new Item("Sulfuras, Hand of Ragnaros", 10, 80),
     ]);
     const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(20);
+    expect(items[0].quality).to.equal(80);
   });
 
   it("should increase backstage pass quality by 1 if sell-in is greater than 10", function () {
