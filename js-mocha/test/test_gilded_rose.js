@@ -25,5 +25,11 @@ describe("Gilded Rose", function () {
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(8);
     });
+
+    it("should not set quality below 0", function () {
+      const gildedRose = new Shop([new Item("foo", 3, 0)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(0);
+    });
   });
 });
