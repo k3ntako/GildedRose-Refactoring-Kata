@@ -6,63 +6,108 @@ class Item {
   }
 }
 
+class ConjuredItem extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+    this.isConjured = true;
+  }
+}
+
+const validateQuality = (quality) => {
+  if (quality > 50) {
+    return 50;
+  } else if (quality < 0) {
+    return 0;
+  }
+  return quality;
+};
+
+const ITEM_SPECS = {
+  "Sulfuras, Hand of Ragnaros": {
+    updateQuality: (item) => {
+      return [item.sellIn, 80];
+    },
+  },
+
+  "Aged Brie": {
+    updateQuality: (item) => {
+      let { quality, sellIn } = item;
+      quality++;
+      sellIn--;
+
+      if (sellIn < 0) {
+        quality++;
+      }
+
+      quality = validateQuality(quality);
+
+      return [sellIn, quality];
+    },
+  },
+
+  "Backstage passes to a TAFKAL80ETC concert": {
+    updateQuality: (item) => {
+      let { quality, sellIn } = item;
+      quality++;
+
+      if (sellIn < 11) {
+        quality = quality + 1;
+      }
+      if (sellIn < 6) {
+        quality = quality + 1;
+      }
+
+      sellIn--;
+
+      if (sellIn < 0) {
+        quality = 0;
+      }
+
+      quality = validateQuality(quality);
+
+      return [sellIn, quality];
+    },
+  },
+
+  generic_spec: {
+    updateQuality: (item) => {
+      let { quality, sellIn, isConjured } = item;
+      let qualityDecrease = 1;
+      sellIn--;
+
+      if (sellIn < 0) {
+        qualityDecrease++;
+      }
+
+      if (isConjured) {
+        qualityDecrease *= 2;
+      }
+
+      quality = validateQuality(quality - qualityDecrease);
+
+      return [sellIn, quality];
+    },
+  },
+};
+
 class Shop {
   constructor(items = []) {
     this.items = items;
   }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
-      if (
-        this.items[i].name != "Aged Brie" &&
-        this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-      ) {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (
-            this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
+      const item = this.items[i];
+
+      let spec = ITEM_SPECS[item.name];
+
+      if (!spec) {
+        spec = ITEM_SPECS.generic_spec;
       }
-      if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != "Aged Brie") {
-          if (
-            this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality =
-              this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
-      }
+
+      const [sellIn, quality] = spec.updateQuality(item);
+
+      item.sellIn = sellIn;
+      item.quality = quality;
     }
 
     return this.items;
@@ -70,5 +115,6 @@ class Shop {
 }
 module.exports = {
   Item,
+  ConjuredItem,
   Shop,
 };
