@@ -1,6 +1,6 @@
 # Scheme port of the Gilded-Rose Kata
 
-This is a (Gambit) R5RS Scheme port of the *Gilded-Rose-Kata*.
+This is a (Gambit) R5RS Scheme port of the _Gilded-Rose-Kata_.
 
 ## Building and Running
 

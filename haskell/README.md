@@ -1,12 +1,12 @@
 # Haskell port of the Gilded-Rose Kata
 
-This is a Haskell port of the *Gilded-Rose-Kata*. 
+This is a Haskell port of the _Gilded-Rose-Kata_.
 
 ## Prerequisite
 
-If you don't have a recent Stack version installed in your system, follow the 
-[installation instructions](https://docs.haskellstack.org/en/stable/install_and_upgrade/) 
-for your operating system. 
+If you don't have a recent Stack version installed in your system, follow the
+[installation instructions](https://docs.haskellstack.org/en/stable/install_and_upgrade/)
+for your operating system.
 
 ## Building and Running
 

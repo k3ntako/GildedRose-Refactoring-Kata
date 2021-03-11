@@ -1,16 +1,16 @@
 {
-    "name": "GildedRose",
-    "configurations": [
-        {
-            "name": "GuildedRose",
-            "targetType": "executable",
-            "mainSourceFile": "src/GildedRoseTextTests.d"
-        },
-        {
-            "name": "unittest",
-            "targetType": "executable",
-            "sourcePaths": ["test"],
-            "mainSourceFile": "test/GildedRoseUnitTests.d"
-        }
-    ]
+  "name": "GildedRose",
+  "configurations": [
+    {
+      "name": "GuildedRose",
+      "targetType": "executable",
+      "mainSourceFile": "src/GildedRoseTextTests.d"
+    },
+    {
+      "name": "unittest",
+      "targetType": "executable",
+      "sourcePaths": ["test"],
+      "mainSourceFile": "test/GildedRoseUnitTests.d"
+    }
+  ]
 }

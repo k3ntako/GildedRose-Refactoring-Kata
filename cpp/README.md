@@ -1,12 +1,13 @@
 # C++ version of Gilded Rose refactoring kata
 
 ## Introduction
+
 The C++ version of the Gilded Rose refactoring kata is available in four variants using different test frameworks:
 
-* Catch2 test framework
+- Catch2 test framework
   1. Traditional unit test with the [Catch2](https://github.com/catchorg/Catch2) test framework in the `test/cpp_catch2_unittest` folder.
   2. [Approval tests](https://github.com/approvals/ApprovalTests.cpp) with the [Catch2](https://github.com/catchorg/Catch2) test framework in the `test/cpp_catch2_approvaltest` folder.
-* Google Test framework
+- Google Test framework
   1. Traditional unit test with the [Googletest](https://github.com/google/googletest) test framework in the `test/cpp_googletest_unittest` folder.
   2. [Approval tests](https://github.com/approvals/ApprovalTests.cpp) with the [Googletest](https://github.com/google/googletest) test framework in the `test/cpp_googletest_approvaltest` folder.
 
@@ -14,8 +15,8 @@ The `GildedRose.cc` file, i.e. the code under test, is identical in all four var
 
 ## Prerequisites
 
-* CMake version >= 3.13
-* C++ compiler that support C++11
+- CMake version >= 3.13
+- C++ compiler that support C++11
 
 ## How to build and run tests in a terminal
 
@@ -55,10 +56,10 @@ The `GildedRose.cc` file, i.e. the code under test, is identical in all four var
 2. Select menu `File - Open...`
 3. Select folder `${GIT_FOLDER}/GildedRose-Refactoring-Kata/cpp`
 4. Select menu `Build - Build Project`
-4. Select menu `Run - Run...`
-4. Select what test variant to run, e.g. `GildedRoseCatch2ApprovalTests`.
+5. Select menu `Run - Run...`
+6. Select what test variant to run, e.g. `GildedRoseCatch2ApprovalTests`.
 
-## How to build and run tests using Visual Studio 2019 
+## How to build and run tests using Visual Studio 2019
 
 1. Start Visual Studio 2019
 2. Select `Open a local folder`
