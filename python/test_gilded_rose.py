@@ -33,6 +33,13 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(9, items[0].quality)
 
+    def test_quality_never_below_zero(self):
+        """Test that quality never decreases below zero"""
+        items = [Item("foo", 10, 0)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(0, items[0].quality)
+
 
 if __name__ == '__main__':
     unittest.main()
