@@ -75,9 +75,16 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(12, items[0].quality)
 
-    def test_backstage_pass_quality_increases_by_two(self):
+    def test_backstage_pass_quality_increases_ten_days(self):
         """Test that backstage pass quality increases by 2 when 10 days away"""
         items = [Item("Backstage passes to a TAFKAL80ETC concert", 10, 11)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(13, items[0].quality)
+
+    def test_backstage_pass_quality_increases_six_days(self):
+        """Test that backstage pass quality increases by 2 when 6 days away"""
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 6, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEqual(13, items[0].quality)
