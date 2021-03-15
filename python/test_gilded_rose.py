@@ -61,6 +61,13 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(10, items[0].sell_in)
 
+    def test_sulfuras_quality_is_always_eighty(self):
+        """Test that sulfuras quality is always 80"""
+        items = [Item("Sulfuras, Hand of Ragnaros", 10, 80)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(80, items[0].quality)
+
 
 if __name__ == '__main__':
     unittest.main()
