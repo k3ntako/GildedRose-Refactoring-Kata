@@ -7,10 +7,6 @@ class GildedRose(object):
 
     def update_items_for_next_day(self):
         for item in self.items:
-            if item.name == "Sulfuras, Hand of Ragnaros":
-                item.update_for_next_day()
-                continue
-            
             item.update_for_next_day()
 
 class Item:
