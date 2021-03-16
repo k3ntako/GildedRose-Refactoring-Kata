@@ -12,13 +12,7 @@ class GildedRose(object):
                 continue
             
             item.sell_in = item.sell_in - 1
-
-            if item.name == "Aged Brie":
-                item.update_for_next_day()
-            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                item.update_for_next_day()
-            else:
-                item.update_for_next_day()
+            item.update_for_next_day()
         
             if item.quality > 50:
                 item.quality = 50
