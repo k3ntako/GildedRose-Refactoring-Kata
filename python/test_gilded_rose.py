@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from gilded_rose import Item, GildedRose, AgedBrie, BackstagePasses
+from gilded_rose import Item, GildedRose, AgedBrie, BackstagePasses, Sulfuras
 
 
 class GildedRoseTest(unittest.TestCase):
@@ -70,14 +70,14 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_sulfuras_sell_in_does_not_decrease(self):
         """Test that sulfuras sell-in does not decrease"""
-        items = [Item("Sulfuras, Hand of Ragnaros", 10, 80)]
+        items = [Sulfuras("Sulfuras, Hand of Ragnaros", 10, 80)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(10, items[0].sell_in)
 
     def test_sulfuras_quality_is_always_eighty(self):
         """Test that sulfuras quality is always 80"""
-        items = [Item("Sulfuras, Hand of Ragnaros", 10, 80)]
+        items = [Sulfuras("Sulfuras, Hand of Ragnaros", 10, 80)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(80, items[0].quality)

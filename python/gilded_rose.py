@@ -8,6 +8,7 @@ class GildedRose(object):
     def update_items_for_next_day(self):
         for item in self.items:
             if item.name == "Sulfuras, Hand of Ragnaros":
+                item.update_for_next_day()
                 continue
             
             item.sell_in = item.sell_in - 1
@@ -93,4 +94,8 @@ class BackstagePasses(ItemType):
             self.item.quality = self.item.quality + 1       
         if self.item.sell_in < 0:
             self.item.quality = 0
+
+class Sulfuras(ItemType):
+    def update_for_next_day(self):
+       pass
     
