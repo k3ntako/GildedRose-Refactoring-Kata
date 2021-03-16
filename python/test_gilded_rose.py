@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from gilded_rose import Item, GildedRose, AgedBrie
+from gilded_rose import Item, GildedRose, AgedBrie, BackstagePasses
 
 
 class GildedRoseTest(unittest.TestCase):
@@ -84,42 +84,42 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_backstage_pass_quality_increases(self):
         """Test that backstage pass quality increases by 1"""
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 15, 11)]
+        items = [BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 15, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(12, items[0].quality)
 
     def test_backstage_pass_quality_increases_ten_days(self):
         """Test that backstage pass quality increases by 2 when 10 days away"""
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 10, 11)]
+        items = [BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 10, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(13, items[0].quality)
 
     def test_backstage_pass_quality_increases_six_days(self):
         """Test that backstage pass quality increases by 2 when 6 days away"""
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 6, 11)]
+        items = [BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 6, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(13, items[0].quality)
 
     def test_backstage_pass_quality_increases_five_days(self):
         """Test that backstage pass quality increases by 3 when 5 days away"""
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 5, 11)]
+        items = [BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 5, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(14, items[0].quality)
 
     def test_backstage_pass_quality_increases_one_day(self):
         """Test that backstage pass quality increases by 3 when 1 day away"""
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 1, 11)]
+        items = [BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 1, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(14, items[0].quality)
 
     def test_backstage_pass_quality_is_zero_after_event(self):
         """Test that backstage pass quality is zero after the event"""
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 0, 11)]
+        items = [BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 0, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(0, items[0].quality)
