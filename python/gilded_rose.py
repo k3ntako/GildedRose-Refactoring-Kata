@@ -12,9 +12,6 @@ class GildedRose(object):
                 continue
             
             item.update_for_next_day()
-        
-            if item.quality > 50:
-                item.quality = 50
 
 class Item:
     def __init__(self, name, sell_in, quality):
@@ -31,6 +28,10 @@ class ItemType:
 
     def subtract_sell_in(self):
         self.item.sell_in = self.item.sell_in - 1
+
+    def set_quality_to_50_or_less(self):
+        if self.item.quality > 50:
+            self.item.quality = 50
         
     def get_name(self): 
         return self.item.name 
@@ -71,6 +72,8 @@ class AgedBrie(ItemType):
         if self.item.sell_in < 0:
             self.item.quality = self.item.quality + 1
 
+        self.set_quality_to_50_or_less()
+
 class BackstagePasses(ItemType):
     def update_for_next_day(self):
         self.subtract_sell_in()
@@ -82,6 +85,8 @@ class BackstagePasses(ItemType):
             self.item.quality = self.item.quality + 1       
         if self.item.sell_in < 0:
             self.item.quality = 0
+
+        self.set_quality_to_50_or_less()
 
 class Sulfuras(ItemType):
     def update_for_next_day(self):
@@ -97,4 +102,6 @@ class GenericType(ItemType):
 
         if self.item.quality < 0:
             self.item.quality = 0
+
+        self.set_quality_to_50_or_less()
     
