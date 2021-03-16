@@ -124,6 +124,13 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_items_for_next_day()
         self.assertEqual(0, items[0].quality)
 
+    def test_conjured_item_quality_decreases_by_two(self):
+        """Test that conjured item's quality decreases by 2"""
+        items = [ConjuredItem("Conjured Mana Cake", 10, 11)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_items_for_next_day()
+        self.assertEqual(9, items[0].quality)
+
 
 if __name__ == '__main__':
     unittest.main()

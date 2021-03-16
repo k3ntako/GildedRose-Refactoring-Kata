@@ -101,3 +101,10 @@ class GenericType(ItemType):
 
         self.set_quality_to_50_or_less()
     
+class ConjuredItem(ItemType):
+    def update_for_next_day(self):
+        self.subtract_sell_in()
+        self.item.quality = self.item.quality - 2
+
+        if self.item.sell_in < 0:
+            self.item.quality = self.item.quality - 2
