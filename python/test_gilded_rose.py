@@ -54,6 +54,13 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_items_for_next_day()
         self.assertEqual(50, items[0].quality)
 
+    def test_aged_brie_sell_in_decreases(self):
+        """Test Aged Brie sell-in decreases by 1"""
+        items = [Item("Aged Brie", 10, 20)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_items_for_next_day()
+        self.assertEqual(9, items[0].sell_in)
+
     def test_sulfuras_sell_in_does_not_decrease(self):
         """Test that sulfuras sell-in does not decrease"""
         items = [Item("Sulfuras, Hand of Ragnaros", 10, 80)]
