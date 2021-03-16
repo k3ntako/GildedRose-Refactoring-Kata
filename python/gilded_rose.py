@@ -11,8 +11,10 @@ class GildedRose(object):
                 continue
 
             if item.name == "Aged Brie":
-                item.quality = item.quality + 1
-            elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+                self.update_age_brie(item)
+                continue
+
+            if item.name == "Backstage passes to a TAFKAL80ETC concert":
                 item.quality = item.quality + 1
                 if item.sell_in < 11:
                     item.quality = item.quality + 1
@@ -24,8 +26,6 @@ class GildedRose(object):
             item.sell_in = item.sell_in - 1
 
             if item.sell_in < 0:
-                if item.name == "Aged Brie":
-                    item.quality = item.quality + 1
                 if item.name == "Backstage passes to a TAFKAL80ETC concert":
                     item.quality = 0
                 else:
@@ -36,6 +36,18 @@ class GildedRose(object):
 
             if item.quality > 50:
                 item.quality = 50
+
+    def update_age_brie(self, item):
+        item.quality = item.quality + 1
+
+        if item.sell_in < 0:
+            item.quality = item.quality + 1
+
+        if item.quality > 50:
+            item.quality = 50
+
+
+
 
 
 class Item:
