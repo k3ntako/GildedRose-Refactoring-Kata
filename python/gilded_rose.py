@@ -27,7 +27,7 @@ class GildedRose(object):
                     if item.name != "Backstage passes to a TAFKAL80ETC concert":
                         item.quality = item.quality - 1
                     else:
-                        item.quality = item.quality - item.quality
+                        item.quality = 0
                 else:
                     item.quality = item.quality + 1
 
