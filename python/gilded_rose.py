@@ -88,7 +88,7 @@ class Sulfuras(ItemType):
     def update_for_next_day(self):
        pass
 
-class GenericType(ItemType):
+class GenericItem(ItemType):
     def update_for_next_day(self):
         self.subtract_sell_in()
         self.item.quality = self.item.quality - 1
