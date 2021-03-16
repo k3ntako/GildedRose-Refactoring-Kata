@@ -18,22 +18,11 @@ class GildedRose(object):
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
                 item.update_for_next_day()
             else:
-                self.update_generic(item)
+                item.update_for_next_day()
         
             if item.quality > 50:
                 item.quality = 50
 
-    def update_generic(self, item):
-        item.quality = item.quality - 1
-
-        if item.sell_in < 0:
-            item.quality = item.quality - 1
-
-        if item.quality < 0:
-            item.quality = 0
-
-        
-        
 class Item:
     def __init__(self, name, sell_in, quality):
         self.name = name
@@ -98,4 +87,14 @@ class BackstagePasses(ItemType):
 class Sulfuras(ItemType):
     def update_for_next_day(self):
        pass
+
+class GenericType(ItemType):
+    def update_for_next_day(self):
+        self.item.quality = self.item.quality - 1
+
+        if self.item.sell_in < 0:
+            self.item.quality = self.item.quality - 1
+
+        if self.item.quality < 0:
+            self.item.quality = 0
     
