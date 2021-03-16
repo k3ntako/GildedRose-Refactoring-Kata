@@ -5,7 +5,7 @@ class GildedRose(object):
     def __init__(self, items):
         self.items = items
 
-    def update_quality(self):
+    def update_items_for_next_day(self):
         for item in self.items:
             if item.name == "Sulfuras, Hand of Ragnaros":
                 continue
