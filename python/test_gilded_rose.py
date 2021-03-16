@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from gilded_rose import Item, GildedRose
+from gilded_rose import Item, GildedRose, AgedBrie
 
 
 class GildedRoseTest(unittest.TestCase):
@@ -42,28 +42,28 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_aged_brie_increases_in_quality(self):
         """Test that Aged Brie increases in quality"""
-        items = [Item("Aged Brie", 10, 11)]
+        items = [AgedBrie("Aged Brie", 10, 11)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(12, items[0].quality)
 
     def test_quality_does_not_increase_above_fifty(self):
         """Test quality does not increase above 50"""
-        items = [Item("Aged Brie", 10, 50)]
+        items = [AgedBrie("Aged Brie", 10, 50)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(50, items[0].quality)
 
     def test_aged_brie_sell_in_decreases(self):
         """Test Aged Brie sell-in decreases by 1"""
-        items = [Item("Aged Brie", 10, 20)]
+        items = [AgedBrie("Aged Brie", 10, 20)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(9, items[0].sell_in)
 
     def test_aged_brie_quality_after_sell_in(self):
         """Test Aged Brie quality increases by 2 after sell-in date"""
-        items = [Item("Aged Brie", 0, 10)]
+        items = [AgedBrie("Aged Brie", 0, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_items_for_next_day()
         self.assertEqual(12, items[0].quality)
