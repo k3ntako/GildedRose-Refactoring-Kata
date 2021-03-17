@@ -9,55 +9,55 @@ class GildedRoseTest(unittest.TestCase):
         items = [Item("foo", 0, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals("foo", items[0].name)
+        self.assertEqual("foo", items[0].name)
 
     def test_item_sell_in_decreases(self):
         items = [Item("foo", 0, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(-1, items[0].sell_in)
+        self.assertEqual(-1, items[0].sell_in)
 
     def test_item_quality_decreases(self):
         items = [Item("foo", 5, 2)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(1, items[0].quality)
+        self.assertEqual(1, items[0].quality)
 
     def test_item_quality_decreases_faster_when_expired(self):
         items = [Item("foo", 0, 2)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(0, items[0].quality)
+        self.assertEqual(0, items[0].quality)
 
     def test_item_quality_is_never_negative(self):
         items = [Item("foo", 10, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(0, items[0].quality)
+        self.assertEqual(0, items[0].quality)
 
     def test_aged_brie_quality_increases(self):
         items = [Item("Aged Brie", 10, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(1, items[0].quality)
+        self.assertEqual(1, items[0].quality)
 
     def test_aged_brie_quality_is_never_greater_than_fifty(self):
         items = [Item("Aged Brie", 10, 50)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(50, items[0].quality)
+        self.assertEqual(50, items[0].quality)
 
     def test_sulfuras_quality_is_never_changes(self):
         items = [Item("Sulfuras, Hand of Ragnaros", 10, 80)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(80, items[0].quality)
+        self.assertEqual(80, items[0].quality)
 
     def test_sulfuras_sell_in_is_never_changes(self):
         items = [Item("Sulfuras, Hand of Ragnaros", 10, 80)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals(10, items[0].sell_in)
+        self.assertEqual(10, items[0].sell_in)
 
         
 if __name__ == '__main__':
