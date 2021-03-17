@@ -35,6 +35,12 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEquals(0, items[0].quality)
 
+    def test_aged_brie_quality_increases(self):
+        items = [Item("Aged Brie", 10, 0)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(1, items[0].quality)
+
         
 if __name__ == '__main__':
     unittest.main()
