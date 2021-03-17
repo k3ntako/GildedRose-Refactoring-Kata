@@ -23,6 +23,12 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEquals(1, items[0].quality)
 
+    def test_item_quality_decreases_faster_when_expired(self):
+        items = [Item("foo", 0, 2)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(0, items[0].quality)
+
         
 if __name__ == '__main__':
     unittest.main()
